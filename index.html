@@ -15,9 +15,9 @@
 
 <style>
 
-/* ==========================================
+/* ==================================================
    CONFIGURAÇÃO VISUAL
-   ========================================== */
+   ================================================== */
 
 * {
     box-sizing: border-box;
@@ -55,9 +55,9 @@ body {
 }
 
 
-/* ==========================================
+/* ==================================================
    CABEÇALHO
-   ========================================== */
+   ================================================== */
 
 .cabecalho {
 
@@ -96,9 +96,9 @@ body {
 }
 
 
-/* ==========================================
+/* ==================================================
    CARDS
-   ========================================== */
+   ================================================== */
 
 .card {
 
@@ -117,9 +117,9 @@ body {
 }
 
 
-/* ==========================================
+/* ==================================================
    CAMPOS
-   ========================================== */
+   ================================================== */
 
 .campo {
 
@@ -199,10 +199,6 @@ input:focus {
 }
 
 
-/* ==========================================
-   CAMPOS ALTERADOS APÓS O CÁLCULO
-   ========================================== */
-
 .input-pendente {
 
     border-color: #ffb300;
@@ -212,9 +208,9 @@ input:focus {
 }
 
 
-/* ==========================================
+/* ==================================================
    BOTÕES
-   ========================================== */
+   ================================================== */
 
 .botoes {
 
@@ -262,9 +258,9 @@ button {
 }
 
 
-.btn-print {
+.btn-relatorio {
 
-    width: 48px;
+    width: 52px;
 
     background: #eceff1;
 
@@ -275,9 +271,16 @@ button {
 }
 
 
-/* ==========================================
-   ERRO DE CONFIGURAÇÃO
-   ========================================== */
+.btn-relatorio:hover {
+
+    background: #cfd8dc;
+
+}
+
+
+/* ==================================================
+   ERRO
+   ================================================== */
 
 .erro-config {
 
@@ -306,9 +309,9 @@ button {
 }
 
 
-/* ==========================================
-   AVISO DE ALTERAÇÃO
-   ========================================== */
+/* ==================================================
+   AVISO
+   ================================================== */
 
 .aviso-atualizacao {
 
@@ -335,9 +338,9 @@ button {
 }
 
 
-/* ==========================================
-   TÍTULO DA MEMÓRIA
-   ========================================== */
+/* ==================================================
+   MEMÓRIA
+   ================================================== */
 
 .titulo-memoria {
 
@@ -377,10 +380,6 @@ button {
 
 }
 
-
-/* ==========================================
-   TABELA
-   ========================================== */
 
 .memoria {
 
@@ -475,9 +474,9 @@ button {
 }
 
 
-/* ==========================================
+/* ==================================================
    RESULTADO
-   ========================================== */
+   ================================================== */
 
 .resultado {
 
@@ -533,9 +532,9 @@ button {
 }
 
 
-/* ==========================================
+/* ==================================================
    OBSERVAÇÃO
-   ========================================== */
+   ================================================== */
 
 .observacao {
 
@@ -560,9 +559,9 @@ button {
 }
 
 
-/* ==========================================
+/* ==================================================
    RODAPÉ
-   ========================================== */
+   ================================================== */
 
 .rodape {
 
@@ -589,9 +588,9 @@ button {
 }
 
 
-/* ==========================================
+/* ==================================================
    DESKTOP
-   ========================================== */
+   ================================================== */
 
 @media (min-width: 481px) {
 
@@ -647,114 +646,6 @@ button {
 
 }
 
-
-/* ==========================================
-   IMPRESSÃO / PDF
-   ========================================== */
-
-@media print {
-
-    @page {
-
-        size: A4;
-
-        margin: 10mm;
-
-    }
-
-
-    body {
-
-        background: white;
-
-        padding: 0;
-
-    }
-
-
-    .container {
-
-        max-width: 100%;
-
-    }
-
-
-    .entrada {
-
-        display: none !important;
-
-    }
-
-
-    .btn-print,
-    .btn-calcular {
-
-        display: none !important;
-
-    }
-
-
-    .aviso-atualizacao {
-
-        display: none !important;
-
-    }
-
-
-    .card {
-
-        box-shadow: none;
-
-        border:
-            1px solid
-            #ddd;
-
-        padding: 10px;
-
-        margin-bottom: 8px;
-
-    }
-
-
-    .cabecalho {
-
-        padding-bottom: 8px;
-
-    }
-
-
-    .memoria td {
-
-        padding: 6px;
-
-    }
-
-
-    .resultado {
-
-        margin-top: 8px;
-
-    }
-
-
-    .rodape {
-
-        display: block !important;
-
-        color: #78909c;
-
-        margin-top: 5px;
-
-        padding-top: 8px;
-
-        border-top:
-            1px solid
-            #e0e0e0;
-
-    }
-
-}
-
 </style>
 
 </head>
@@ -766,9 +657,9 @@ button {
 <div class="container">
 
 
-<!-- ==========================================
+<!-- ==================================================
      CABEÇALHO
-     ========================================== -->
+     ================================================== -->
 
 <div class="cabecalho">
 
@@ -784,9 +675,9 @@ button {
 
 
 
-<!-- ==========================================
-     ERRO DE CONFIGURAÇÃO
-     ========================================== -->
+<!-- ==================================================
+     ERRO
+     ================================================== -->
 
 <div
     id="erroConfig"
@@ -796,11 +687,11 @@ button {
 
 
 
-<!-- ==========================================
+<!-- ==================================================
      DADOS DE ENTRADA
-     ========================================== -->
+     ================================================== -->
 
-<div class="card entrada">
+<div class="card">
 
 
     <!-- ITEM 1 -->
@@ -812,7 +703,6 @@ button {
             1. Valor da conta COMGÁS
 
         </label>
-
 
         <input
             type="number"
@@ -837,7 +727,6 @@ button {
 
         </label>
 
-
         <input
             type="number"
             id="consumoTotal"
@@ -860,7 +749,6 @@ button {
             no período (m³)
 
         </label>
-
 
         <input
             type="number"
@@ -891,9 +779,9 @@ button {
 
 
         <button
-            class="btn-print"
-            onclick="window.print()"
-            title="Imprimir ou salvar PDF"
+            class="btn-relatorio"
+            onclick="gerarRelatorio()"
+            title="Gerar relatório"
         >
 
             🖨
@@ -902,6 +790,7 @@ button {
 
 
     </div>
+
 
 
     <!-- AVISO -->
@@ -922,9 +811,9 @@ button {
 
 
 
-<!-- ==========================================
+<!-- ==================================================
      MEMÓRIA DE CÁLCULO
-     ========================================== -->
+     ================================================== -->
 
 <div class="card">
 
@@ -933,9 +822,7 @@ button {
 
 
         <h2>
-
             Memória de Cálculo
-
         </h2>
 
 
@@ -943,9 +830,7 @@ button {
             class="parametros"
             id="parametrosTexto"
         >
-
             --
-
         </div>
 
 
@@ -975,7 +860,6 @@ button {
             </tr>
 
         </thead>
-
 
 
         <tbody>
@@ -1228,9 +1112,9 @@ button {
 
 
 
-    <!-- ==========================================
-         RESULTADO FINAL
-         ========================================== -->
+    <!-- ==================================================
+         RESULTADO
+         ================================================== -->
 
     <div class="resultado">
 
@@ -1263,24 +1147,19 @@ button {
 
 
 
-    <!-- ==========================================
+    <!-- ==================================================
          CRITÉRIO
-         ========================================== -->
+         ================================================== -->
 
     <div class="observacao">
-
 
         <strong>
             Critério de rateio:
         </strong>
 
-
         <span id="criterioTexto">
-
             --
-
         </span>
-
 
     </div>
 
@@ -1289,9 +1168,9 @@ button {
 
 
 
-<!-- ==========================================
+<!-- ==================================================
      RODAPÉ
-     ========================================== -->
+     ================================================== -->
 
 <div class="rodape">
 
@@ -1332,9 +1211,9 @@ const NUMERO_UNIDADES = 205;
    ================================================== */
 
 
-/* ==========================================
-   FORMATAÇÃO DE DINHEIRO
-   ========================================== */
+/* ==================================================
+   FORMATAÇÃO
+   ================================================== */
 
 function dinheiro(valor) {
 
@@ -1349,11 +1228,6 @@ function dinheiro(valor) {
 }
 
 
-
-/* ==========================================
-   FORMATAÇÃO DE NÚMEROS
-   ========================================== */
-
 function numero(valor) {
 
     return valor.toLocaleString(
@@ -1366,11 +1240,6 @@ function numero(valor) {
 
 }
 
-
-
-/* ==========================================
-   FORMATAÇÃO DE PERCENTUAL
-   ========================================== */
 
 function percentual(valor) {
 
@@ -1387,9 +1256,9 @@ function percentual(valor) {
 
 
 
-/* ==========================================
-   VERIFICA CONFIGURAÇÃO
-   ========================================== */
+/* ==================================================
+   CONFIGURAÇÃO
+   ================================================== */
 
 function verificarConfiguracao() {
 
@@ -1401,7 +1270,6 @@ function verificarConfiguracao() {
 
 
     const erro =
-
         document.getElementById(
             'erroConfig'
         );
@@ -1422,25 +1290,12 @@ function verificarConfiguracao() {
 
             'ERRO DE CONFIGURAÇÃO: ' +
 
-            'O percentual fixo (' +
-
-            percentual(
-                PERCENTUAL_FIXO
-            ) +
-
-            ') + o percentual variável (' +
-
-            percentual(
-                PERCENTUAL_VARIAVEL
-            ) +
-
-            ') devem totalizar 100%.';
+            'Os percentuais fixo e variável devem totalizar 100%.';
 
 
         return false;
 
     }
-
 
 
     if (
@@ -1464,7 +1319,6 @@ function verificarConfiguracao() {
     }
 
 
-
     erro.style.display =
         'none';
 
@@ -1475,9 +1329,9 @@ function verificarConfiguracao() {
 
 
 
-/* ==========================================
-   ATUALIZA PARÂMETROS
-   ========================================== */
+/* ==================================================
+   ATUALIZA TEXTOS
+   ================================================== */
 
 function atualizarParametros() {
 
@@ -1503,12 +1357,6 @@ function atualizarParametros() {
         ' unidades';
 
 
-
-    /*
-     * Atualiza automaticamente as descrições
-     * dos custos conforme os percentuais
-     * configurados no início do código.
-     */
 
     document.getElementById(
         'descricaoCustoFixo'
@@ -1562,66 +1410,63 @@ function atualizarParametros() {
 
 
 
-/* ==========================================
-   LIMPA MEMÓRIA
-   ========================================== */
+/* ==================================================
+   LIMPA RESULTADOS
+   ================================================== */
 
 function limparResultados() {
 
 
-    document.getElementById('r1').innerText =
-        '—';
+    const ids = [
 
-    document.getElementById('r2').innerText =
-        '—';
+        'r1',
+        'r2',
+        'r3',
+        'r4',
+        'r5',
+        'r6',
+        'r7',
+        'r8',
+        'r9',
+        'r10'
 
-    document.getElementById('r3').innerText =
-        '—';
-
-    document.getElementById('r4').innerText =
-        '—';
-
-    document.getElementById('r5').innerText =
-        '—';
-
-    document.getElementById('r6').innerText =
-        '—';
-
-    document.getElementById('r7').innerText =
-        '—';
-
-    document.getElementById('r8').innerText =
-        '—';
-
-    document.getElementById('r9').innerText =
-        '—';
-
-    document.getElementById('r10').innerText =
-        '—';
+    ];
 
 
-    document.getElementById('f2').innerText =
-        'Aguardando cálculo';
+    ids.forEach(function(id) {
 
-    document.getElementById('f4').innerText =
-        'Aguardando cálculo';
+        document.getElementById(id)
+            .innerText = '—';
 
-    document.getElementById('f6').innerText =
-        'Aguardando cálculo';
+    });
 
-    document.getElementById('f7').innerText =
-        'Aguardando cálculo';
 
-    document.getElementById('f9').innerText =
-        'Aguardando cálculo';
+    const formulas = [
+
+        'f2',
+        'f4',
+        'f6',
+        'f7',
+        'f9'
+
+    ];
+
+
+    formulas.forEach(function(id) {
+
+        document.getElementById(id)
+            .innerText =
+            'Aguardando cálculo';
+
+    });
 
 }
 
 
 
-/* ==========================================
-   MARCA ALTERAÇÃO
-   ========================================== */
+/* ==================================================
+   AVISO DE ALTERAÇÃO
+   ================================================== */
 
 function marcarAlteracao() {
 
@@ -1659,9 +1504,9 @@ function marcarAlteracao() {
 
 
 
-/* ==========================================
+/* ==================================================
    REMOVE AVISO
-   ========================================== */
+   ================================================== */
 
 function removerAvisoAlteracao() {
 
@@ -1699,16 +1544,12 @@ function removerAvisoAlteracao() {
 
 
 
-/* ==========================================
-   FUNÇÃO PRINCIPAL
-   ========================================== */
+/* ==================================================
+   CÁLCULO PRINCIPAL
+   ================================================== */
 
 function calcular() {
 
-
-    /*
-     * Verifica configuração.
-     */
 
     if (
         !verificarConfiguracao()
@@ -1721,11 +1562,6 @@ function calcular() {
     }
 
 
-
-    /*
-     * Captura dados.
-
-     */
 
     const campoFatura =
 
@@ -1749,10 +1585,6 @@ function calcular() {
 
 
 
-    /*
-     * Verifica preenchimento.
-     */
-
     if (
 
         campoFatura === '' ||
@@ -1775,11 +1607,6 @@ function calcular() {
 
 
 
-    /*
-     * Converte os valores.
-
-     */
-
     const fatura =
 
         parseFloat(
@@ -1801,10 +1628,6 @@ function calcular() {
         );
 
 
-
-    /*
-     * Verifica valores inválidos.
-     */
 
     if (
 
@@ -1834,10 +1657,9 @@ function calcular() {
 
 
 
-    /* ==========================================
+    /* ------------------------------------------
        ITEM 2
-       CUSTO FIXO
-       ========================================== */
+       ------------------------------------------ */
 
     const custoFixo =
 
@@ -1846,10 +1668,9 @@ function calcular() {
 
 
 
-    /* ==========================================
+    /* ------------------------------------------
        ITEM 4
-       CUSTO FIXO POR UNIDADE
-       ========================================== */
+       ------------------------------------------ */
 
     const custoFixoUnidade =
 
@@ -1858,10 +1679,9 @@ function calcular() {
 
 
 
-    /* ==========================================
+    /* ------------------------------------------
        ITEM 6
-       CUSTO VARIÁVEL
-       ========================================== */
+       ------------------------------------------ */
 
     const custoVariavel =
 
@@ -1870,10 +1690,9 @@ function calcular() {
 
 
 
-    /* ==========================================
+    /* ------------------------------------------
        ITEM 7
-       CUSTO POR m³
-       ========================================== */
+       ------------------------------------------ */
 
     const custoM3 =
 
@@ -1882,10 +1701,9 @@ function calcular() {
 
 
 
-    /* ==========================================
+    /* ------------------------------------------
        ITEM 9
-       CUSTO VARIÁVEL DA UNIDADE
-       ========================================== */
+       ------------------------------------------ */
 
     const custoVariavelUnidade =
 
@@ -1894,10 +1712,9 @@ function calcular() {
 
 
 
-    /* ==========================================
+    /* ------------------------------------------
        ITEM 10
-       VALOR FINAL
-       ========================================== */
+       ------------------------------------------ */
 
     const valorBoleto =
 
@@ -1906,78 +1723,41 @@ function calcular() {
 
 
 
-    /* ==========================================
+    /* ==================================================
        ATUALIZA MEMÓRIA
-       ========================================== */
+       ================================================== */
 
-
-    // ITEM 1
-
-    document.getElementById(
-        'r1'
-    ).innerText =
-
-        dinheiro(
-            fatura
-        );
+    document.getElementById('r1').innerText =
+        dinheiro(fatura);
 
 
 
-    // ITEM 2
-
-    document.getElementById(
-        'r2'
-    ).innerText =
-
-        dinheiro(
-            custoFixo
-        );
+    document.getElementById('r2').innerText =
+        dinheiro(custoFixo);
 
 
-    document.getElementById(
-        'f2'
-    ).innerText =
+    document.getElementById('f2').innerText =
 
-        dinheiro(
-            fatura
-        ) +
+        dinheiro(fatura) +
 
         ' × ' +
 
-        percentual(
-            PERCENTUAL_FIXO
-        );
+        percentual(PERCENTUAL_FIXO);
 
 
 
-    // ITEM 3
-
-    document.getElementById(
-        'r3'
-    ).innerText =
-
+    document.getElementById('r3').innerText =
         NUMERO_UNIDADES;
 
 
 
-    // ITEM 4
-
-    document.getElementById(
-        'r4'
-    ).innerText =
-
-        dinheiro(
-            custoFixoUnidade
-        );
+    document.getElementById('r4').innerText =
+        dinheiro(custoFixoUnidade);
 
 
-    document.getElementById(
-        'f4'
-    ).innerText =
+    document.getElementById('f4').innerText =
 
-        dinheiro(
-            custoFixo
-        ) +
+        dinheiro(custoFixo) +
 
         ' ÷ ' +
 
@@ -1985,136 +1765,77 @@ function calcular() {
 
 
 
-    // ITEM 5
+    document.getElementById('r5').innerText =
 
-    document.getElementById(
-        'r5'
-    ).innerText =
-
-        numero(
-            consumoTotal
-        ) +
+        numero(consumoTotal) +
 
         ' m³';
 
 
 
-    // ITEM 6
-
-    document.getElementById(
-        'r6'
-    ).innerText =
-
-        dinheiro(
-            custoVariavel
-        );
+    document.getElementById('r6').innerText =
+        dinheiro(custoVariavel);
 
 
-    document.getElementById(
-        'f6'
-    ).innerText =
+    document.getElementById('f6').innerText =
 
-        dinheiro(
-            fatura
-        ) +
+        dinheiro(fatura) +
 
         ' × ' +
 
-        percentual(
-            PERCENTUAL_VARIAVEL
-        );
+        percentual(PERCENTUAL_VARIAVEL);
 
 
 
-    // ITEM 7
+    document.getElementById('r7').innerText =
 
-    document.getElementById(
-        'r7'
-    ).innerText =
-
-        dinheiro(
-            custoM3
-        ) +
+        dinheiro(custoM3) +
 
         '/m³';
 
 
-    document.getElementById(
-        'f7'
-    ).innerText =
+    document.getElementById('f7').innerText =
 
-        dinheiro(
-            custoVariavel
-        ) +
+        dinheiro(custoVariavel) +
 
         ' ÷ ' +
 
-        numero(
-            consumoTotal
-        ) +
+        numero(consumoTotal) +
 
         ' m³';
 
 
 
-    // ITEM 8
+    document.getElementById('r8').innerText =
 
-    document.getElementById(
-        'r8'
-    ).innerText =
-
-        numero(
-            consumoUnidade
-        ) +
+        numero(consumoUnidade) +
 
         ' m³';
 
 
 
-    // ITEM 9
+    document.getElementById('r9').innerText =
 
-    document.getElementById(
-        'r9'
-    ).innerText =
-
-        dinheiro(
-            custoVariavelUnidade
-        );
+        dinheiro(custoVariavelUnidade);
 
 
-    document.getElementById(
-        'f9'
-    ).innerText =
+    document.getElementById('f9').innerText =
 
-        dinheiro(
-            custoM3
-        ) +
+        dinheiro(custoM3) +
 
         ' × ' +
 
-        numero(
-            consumoUnidade
-        ) +
+        numero(consumoUnidade) +
 
         ' m³';
 
 
 
-    // ITEM 10
+    document.getElementById('r10').innerText =
 
-    document.getElementById(
-        'r10'
-    ).innerText =
-
-        dinheiro(
-            valorBoleto
-        );
+        dinheiro(valorBoleto);
 
 
-
-    /*
-     * Remove aviso.
-     */
 
     removerAvisoAlteracao();
 
@@ -2122,9 +1843,830 @@ function calcular() {
 
 
 
-/* ==========================================
+/* ==================================================
+   GERA RELATÓRIO
+   ================================================== */
+
+function gerarRelatorio() {
+
+
+    /*
+     * Verifica se existe um cálculo.
+     */
+
+    const valorFinal =
+
+        document.getElementById(
+            'r10'
+        ).innerText;
+
+
+    if (
+        valorFinal === '—'
+    ) {
+
+
+        alert(
+            'Faça o cálculo antes de gerar o relatório.'
+        );
+
+
+        return;
+
+    }
+
+
+
+    /*
+     * Captura os dados da memória.
+     */
+
+    const fatura =
+        document.getElementById('r1').innerText;
+
+
+    const custoFixo =
+        document.getElementById('r2').innerText;
+
+
+    const unidades =
+        document.getElementById('r3').innerText;
+
+
+    const custoFixoUnidade =
+        document.getElementById('r4').innerText;
+
+
+    const consumoTotal =
+        document.getElementById('r5').innerText;
+
+
+    const custoVariavel =
+        document.getElementById('r6').innerText;
+
+
+    const custoM3 =
+        document.getElementById('r7').innerText;
+
+
+    const consumoUnidade =
+        document.getElementById('r8').innerText;
+
+
+    const custoVariavelUnidade =
+        document.getElementById('r9').innerText;
+
+
+
+    const f2 =
+        document.getElementById('f2').innerText;
+
+
+    const f4 =
+        document.getElementById('f4').innerText;
+
+
+    const f6 =
+        document.getElementById('f6').innerText;
+
+
+    const f7 =
+        document.getElementById('f7').innerText;
+
+
+    const f9 =
+        document.getElementById('f9').innerText;
+
+
+
+    /*
+     * Cria nova janela.
+     */
+
+    const janela =
+
+        window.open(
+            '',
+            '_blank'
+        );
+
+
+    if (!janela) {
+
+
+        alert(
+            'O navegador bloqueou a abertura do relatório. Permita pop-ups para este site.'
+        );
+
+
+        return;
+
+    }
+
+
+
+    /*
+     * Monta o relatório.
+     */
+
+    janela.document.write(`
+
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    Relatório - SGA Água Quente
+</title>
+
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    padding: 20px;
+
+    background: #f5f5f5;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #263238;
+
+}
+
+
+.relatorio {
+
+    max-width: 800px;
+
+    margin: 0 auto;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 8px;
+
+}
+
+
+h1 {
+
+    text-align: center;
+
+    color: #1565c0;
+
+    margin:
+        0
+        0
+        5px;
+
+    font-size: 24px;
+
+}
+
+
+.subtitulo {
+
+    text-align: center;
+
+    color: #78909c;
+
+    font-size: 12px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.data {
+
+    text-align: right;
+
+    color: #78909c;
+
+    font-size: 10px;
+
+    margin-bottom: 10px;
+
+}
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 13px;
+
+}
+
+
+th {
+
+    background: #1565c0;
+
+    color: white;
+
+    padding: 8px;
+
+    text-align: left;
+
+}
+
+
+th:last-child {
+
+    text-align: right;
+
+}
+
+
+td {
+
+    padding: 8px;
+
+    border-bottom:
+        1px solid
+        #e0e0e0;
+
+}
+
+
+td:first-child {
+
+    width: 35px;
+
+    text-align: center;
+
+    color: #1565c0;
+
+    font-weight: bold;
+
+}
+
+
+td:last-child {
+
+    text-align: right;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+
+}
+
+
+.formula {
+
+    display: block;
+
+    color: #78909c;
+
+    font-size: 10px;
+
+    margin-top: 3px;
+
+}
+
+
+.resultado {
+
+    margin-top: 20px;
+
+    padding: 15px;
+
+    text-align: center;
+
+    background: #e8f5e9;
+
+    border:
+        2px solid
+        #43a047;
+
+    border-radius: 8px;
+
+}
+
+
+.resultado-titulo {
+
+    color: #2e7d32;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+}
+
+
+.valor {
+
+    color: #1b5e20;
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    margin-top: 5px;
+
+}
+
+
+.criterio {
+
+    margin-top: 15px;
+
+    padding: 10px;
+
+    background: #fff8e1;
+
+    border-left:
+        4px solid
+        #ffb300;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+}
+
+
+.acoes {
+
+    text-align: center;
+
+    margin:
+        20px
+        0;
+
+}
+
+
+button {
+
+    border: 0;
+
+    border-radius: 6px;
+
+    padding:
+        10px
+        18px;
+
+    background: #1565c0;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.rodape {
+
+    margin-top: 25px;
+
+    padding-top: 10px;
+
+    border-top:
+        1px solid
+        #e0e0e0;
+
+    text-align: center;
+
+    color: #78909c;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+
+}
+
+
+@media print {
+
+    @page {
+
+        size: A4;
+
+        margin: 12mm;
+
+    }
+
+
+    body {
+
+        padding: 0;
+
+        background: white;
+
+    }
+
+
+    .relatorio {
+
+        max-width: 100%;
+
+        padding: 0;
+
+    }
+
+
+    .acoes {
+
+        display: none;
+
+    }
+
+
+    table {
+
+        font-size: 12px;
+
+    }
+
+
+    td {
+
+        padding: 7px;
+
+    }
+
+
+    .resultado {
+
+        break-inside: avoid;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="relatorio">
+
+
+<h1>
+    SGA - Rateio de Água Quente
+</h1>
+
+
+<div class="subtitulo">
+
+    Memória de cálculo do consumo da unidade
+
+</div>
+
+
+<div class="data">
+
+    Relatório gerado em:
+    ${new Date().toLocaleString('pt-BR')}
+
+</div>
+
+
+
+<div class="acoes">
+
+    <button
+        onclick="window.print()"
+    >
+
+        🖨 IMPRIMIR / SALVAR PDF
+
+    </button>
+
+</div>
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+    #
+</th>
+
+<th>
+    Cálculo
+</th>
+
+<th>
+    Valor
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>
+    1
+</td>
+
+<td>
+    Fatura COMGÁS
+</td>
+
+<td>
+    ${fatura}
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+    2
+</td>
+
+<td>
+
+    Custo Fixo
+    (${percentual(PERCENTUAL_FIXO)}
+    da conta COMGÁS)
+
+    <span class="formula">
+        ${f2}
+    </span>
+
+</td>
+
+<td>
+    ${custoFixo}
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+    3
+</td>
+
+<td>
+
+    Número de unidades
+
+    <span class="formula">
+        204 apartamentos + 1 zelador
+    </span>
+
+</td>
+
+<td>
+    ${unidades}
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+    4
+</td>
+
+<td>
+
+    Custo Fixo por Unidade
+
+    <span class="formula">
+        ${f4}
+    </span>
+
+</td>
+
+<td>
+    ${custoFixoUnidade}
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+    5
+</td>
+
+<td>
+    Consumo total de água quente
+    do condomínio
+</td>
+
+<td>
+    ${consumoTotal}
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+    6
+</td>
+
+<td>
+
+    Custo Variável
+    (${percentual(PERCENTUAL_VARIAVEL)}
+    da conta COMGÁS)
+
+    <span class="formula">
+        ${f6}
+    </span>
+
+</td>
+
+<td>
+    ${custoVariavel}
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+    7
+</td>
+
+<td>
+
+    Custo do gás por m³
+
+    <span class="formula">
+        ${f7}
+    </span>
+
+</td>
+
+<td>
+    ${custoM3}
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+    8
+</td>
+
+<td>
+    Consumo de água quente
+    da unidade
+</td>
+
+<td>
+    ${consumoUnidade}
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+    9
+</td>
+
+<td>
+
+    Custo Variável da Unidade
+
+    <span class="formula">
+        ${f9}
+    </span>
+
+</td>
+
+<td>
+    ${custoVariavelUnidade}
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+
+
+<div class="resultado">
+
+    <div class="resultado-titulo">
+
+        10. VALOR DO BOLETO
+
+    </div>
+
+    <div class="valor">
+
+        ${valorFinal}
+
+    </div>
+
+</div>
+
+
+
+<div class="criterio">
+
+    <strong>
+        Critério de rateio:
+    </strong>
+
+    ${document.getElementById('criterioTexto').innerText}
+
+</div>
+
+
+
+<div class="rodape">
+
+    SGA - Sistema de Rateio de Água Quente<br>
+
+    <strong>
+        Criado por Rither Nascimento
+    </strong>
+
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>
+
+`);
+
+
+    janela.document.close();
+
+}
+
+
+
+/* ==================================================
    DETECTA ALTERAÇÕES
-   ========================================== */
+   ================================================== */
 
 document
     .getElementById('fatura')
@@ -2151,9 +2693,9 @@ document
 
 
 
-/* ==========================================
+/* ==================================================
    INICIALIZAÇÃO
-   ========================================== */
+   ================================================== */
 
 atualizarParametros();
 
