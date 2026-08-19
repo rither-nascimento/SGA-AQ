@@ -40,6 +40,7 @@ body {
     color: #263238;
 
     font-size: 13px;
+
 }
 
 
@@ -199,6 +200,19 @@ input:focus {
 
 
 /* ==========================================
+   CAMPOS ALTERADOS APÓS O CÁLCULO
+   ========================================== */
+
+.input-pendente {
+
+    border-color: #ffb300;
+
+    background: #fffde7;
+
+}
+
+
+/* ==========================================
    BOTÕES
    ========================================== */
 
@@ -288,6 +302,35 @@ button {
     font-weight: bold;
 
     text-align: center;
+
+}
+
+
+/* ==========================================
+   AVISO DE ALTERAÇÃO
+   ========================================== */
+
+.aviso-atualizacao {
+
+    display: none;
+
+    margin-top: 7px;
+
+    padding: 7px;
+
+    background: #fff8e1;
+
+    border-left:
+        3px solid
+        #ffb300;
+
+    border-radius: 3px;
+
+    font-size: 9px;
+
+    color: #6d4c41;
+
+    line-height: 1.35;
 
 }
 
@@ -529,7 +572,16 @@ button {
 
     font-size: 8px;
 
-    padding: 3px;
+    line-height: 1.5;
+
+    padding: 5px 3px 8px;
+
+}
+
+
+.rodape strong {
+
+    color: #607d8b;
 
 }
 
@@ -583,6 +635,13 @@ button {
 
     }
 
+
+    .rodape {
+
+        font-size: 9px;
+
+    }
+
 }
 
 
@@ -625,8 +684,14 @@ button {
 
 
     .btn-print,
-    .btn-calcular,
-    .rodape {
+    .btn-calcular {
+
+        display: none !important;
+
+    }
+
+
+    .aviso-atualizacao {
 
         display: none !important;
 
@@ -669,9 +734,19 @@ button {
     }
 
 
-    .observacao {
+    .rodape {
 
-        display: block;
+        display: block !important;
+
+        color: #78909c;
+
+        margin-top: 5px;
+
+        padding-top: 8px;
+
+        border-top:
+            1px solid
+            #e0e0e0;
 
     }
 
@@ -742,7 +817,6 @@ button {
             placeholder="Informe o valor total da conta"
             step="0.01"
             min="0"
-            oninput="calcular()"
         >
 
     </div>
@@ -767,7 +841,6 @@ button {
             placeholder="Informe o consumo total do condomínio"
             step="0.01"
             min="0"
-            oninput="calcular()"
         >
 
     </div>
@@ -792,7 +865,6 @@ button {
             placeholder="Informe o consumo desta unidade"
             step="0.01"
             min="0"
-            oninput="calcular()"
         >
 
     </div>
@@ -806,6 +878,7 @@ button {
 
         <button
             class="btn-calcular"
+            id="btnCalcular"
             onclick="calcular()"
         >
 
@@ -824,6 +897,20 @@ button {
 
         </button>
 
+
+    </div>
+
+
+    <!-- AVISO -->
+
+    <div
+        id="avisoAtualizacao"
+        class="aviso-atualizacao"
+    >
+
+        Os valores foram alterados.
+        Clique em <strong>ATUALIZAR CÁLCULO</strong>
+        para atualizar a memória.
 
     </div>
 
@@ -927,7 +1014,7 @@ button {
                         class="formula"
                         id="f2"
                     >
-                        Aguardando valor da conta
+                        Aguardando cálculo
                     </span>
 
                 </td>
@@ -953,7 +1040,7 @@ button {
                     Número de unidades
 
                     <span class="formula">
-                        204 apartamentos + 1 zelador
+                        Apartamentos + zelador
                     </span>
 
                 </td>
@@ -1031,7 +1118,7 @@ button {
                         class="formula"
                         id="f6"
                     >
-                        Aguardando valor da conta
+                        Aguardando cálculo
                     </span>
 
                 </td>
@@ -1060,7 +1147,7 @@ button {
                         class="formula"
                         id="f7"
                     >
-                        Aguardando consumo total
+                        Aguardando cálculo
                     </span>
 
                 </td>
@@ -1189,11 +1276,17 @@ button {
 
 
 
-<!-- RODAPÉ -->
+<!-- ==========================================
+     RODAPÉ
+     ========================================== -->
 
 <div class="rodape">
 
-    SGA - Sistema de Rateio de Água Quente
+    SGA - Sistema de Rateio de Água Quente<br>
+
+    <strong>
+        Criado por Rither Nascimento
+    </strong>
 
 </div>
 
@@ -1206,29 +1299,11 @@ button {
 
 
 /* ==================================================
-   ==================================================
    
    ⚙️ CONFIGURAÇÕES DO RATEIO
    
-   ==================================================
-   ==================================================
-
-   ALTERE SOMENTE OS VALORES ABAIXO QUANDO
-   FOR NECESSÁRIO MODIFICAR O CRITÉRIO DE RATEIO.
-
-   EXEMPLO:
-
-   Para 20% fixo e 80% variável:
-
-       0.20
-       0.80
-
-   Para 40% fixo e 60% variável:
-
-       0.40
-       0.60
-
-   ==================================================
+   ALTERE SOMENTE ESTES VALORES
+   
    ================================================== */
 
 
@@ -1239,11 +1314,9 @@ const PERCENTUAL_VARIAVEL = 0.80;
 const NUMERO_UNIDADES = 205;
 
 
-
 /* ==================================================
-   NÃO É NECESSÁRIO ALTERAR NADA ABAIXO DESTA LINHA
+   NÃO ALTERAR ABAIXO
    ================================================== */
-
 
 
 /* ==========================================
@@ -1283,7 +1356,7 @@ function numero(valor) {
 
 
 /* ==========================================
-   FORMATAÇÃO DOS PERCENTUAIS
+   FORMATAÇÃO DE PERCENTUAL
    ========================================== */
 
 function percentual(valor) {
@@ -1302,27 +1375,24 @@ function percentual(valor) {
 
 
 /* ==========================================
-   VERIFICAÇÃO DOS PARÂMETROS
+   VERIFICA CONFIGURAÇÃO
    ========================================== */
 
 function verificarConfiguracao() {
 
 
     const soma =
+
         PERCENTUAL_FIXO +
         PERCENTUAL_VARIAVEL;
 
 
     const erro =
+
         document.getElementById(
             'erroConfig'
         );
 
-
-    /*
-     * Verifica se os percentuais
-     * somam 100%.
-     */
 
     if (
         Math.abs(
@@ -1336,11 +1406,21 @@ function verificarConfiguracao() {
 
 
         erro.innerText =
+
             'ERRO DE CONFIGURAÇÃO: ' +
+
             'O percentual fixo (' +
-            percentual(PERCENTUAL_FIXO) +
+
+            percentual(
+                PERCENTUAL_FIXO
+            ) +
+
             ') + o percentual variável (' +
-            percentual(PERCENTUAL_VARIAVEL) +
+
+            percentual(
+                PERCENTUAL_VARIAVEL
+            ) +
+
             ') devem totalizar 100%.';
 
 
@@ -1349,10 +1429,6 @@ function verificarConfiguracao() {
     }
 
 
-    /*
-     * Verifica se o número
-     * de unidades é válido.
-     */
 
     if (
         NUMERO_UNIDADES <= 0
@@ -1364,7 +1440,9 @@ function verificarConfiguracao() {
 
 
         erro.innerText =
+
             'ERRO DE CONFIGURAÇÃO: ' +
+
             'O número de unidades deve ser maior que zero.';
 
 
@@ -1373,9 +1451,6 @@ function verificarConfiguracao() {
     }
 
 
-    /*
-     * Não há erros.
-     */
 
     erro.style.display =
         'none';
@@ -1388,7 +1463,7 @@ function verificarConfiguracao() {
 
 
 /* ==========================================
-   ATUALIZA TEXTOS DOS PARÂMETROS
+   ATUALIZA PARÂMETROS
    ========================================== */
 
 function atualizarParametros() {
@@ -1441,89 +1516,56 @@ function atualizarParametros() {
 
 
 /* ==========================================
-   LIMPA RESULTADOS
+   LIMPA MEMÓRIA
    ========================================== */
 
 function limparResultados() {
 
 
-    document.getElementById(
-        'r1'
-    ).innerText = '—';
+    document.getElementById('r1').innerText =
+        '—';
+
+    document.getElementById('r2').innerText =
+        '—';
+
+    document.getElementById('r3').innerText =
+        '—';
+
+    document.getElementById('r4').innerText =
+        '—';
+
+    document.getElementById('r5').innerText =
+        '—';
+
+    document.getElementById('r6').innerText =
+        '—';
+
+    document.getElementById('r7').innerText =
+        '—';
+
+    document.getElementById('r8').innerText =
+        '—';
+
+    document.getElementById('r9').innerText =
+        '—';
+
+    document.getElementById('r10').innerText =
+        '—';
 
 
-    document.getElementById(
-        'r2'
-    ).innerText = '—';
-
-
-    document.getElementById(
-        'r3'
-    ).innerText = NUMERO_UNIDADES;
-
-
-    document.getElementById(
-        'r4'
-    ).innerText = '—';
-
-
-    document.getElementById(
-        'r5'
-    ).innerText = '—';
-
-
-    document.getElementById(
-        'r6'
-    ).innerText = '—';
-
-
-    document.getElementById(
-        'r7'
-    ).innerText = '—';
-
-
-    document.getElementById(
-        'r8'
-    ).innerText = '—';
-
-
-    document.getElementById(
-        'r9'
-    ).innerText = '—';
-
-
-    document.getElementById(
-        'r10'
-    ).innerText = '—';
-
-
-    document.getElementById(
-        'f2'
-    ).innerText =
-        'Aguardando valor da conta';
-
-
-    document.getElementById(
-        'f4'
-    ).innerText =
+    document.getElementById('f2').innerText =
         'Aguardando cálculo';
 
+    document.getElementById('f4').innerText =
+        'Aguardando cálculo';
 
-    document.getElementById(
-        'f6'
-    ).innerText =
-        'Aguardando valor da conta';
+    document.getElementById('f6').innerText =
+        'Aguardando cálculo';
 
+    document.getElementById('f7').innerText =
+        'Aguardando cálculo';
 
-    document.getElementById(
-        'f7'
-    ).innerText =
-        'Aguardando consumo total';
-
-
-    document.getElementById(
-        'f9'
-    ).innerText =
+    document.getElementById('f9').innerText =
         'Aguardando cálculo';
 
 }
@@ -1531,14 +1573,94 @@ function limparResultados() {
 
 
 /* ==========================================
-   FUNÇÃO PRINCIPAL DE CÁLCULO
+   MARCA ALTERAÇÃO
+   ========================================== */
+
+function marcarAlteracao() {
+
+
+    document
+        .getElementById('fatura')
+        .classList
+        .add('input-pendente');
+
+
+    document
+        .getElementById('consumoTotal')
+        .classList
+        .add('input-pendente');
+
+
+    document
+        .getElementById('consumoUnidade')
+        .classList
+        .add('input-pendente');
+
+
+    document.getElementById(
+        'avisoAtualizacao'
+    ).style.display =
+        'block';
+
+
+    document.getElementById(
+        'btnCalcular'
+    ).innerText =
+        'ATUALIZAR CÁLCULO';
+
+}
+
+
+
+/* ==========================================
+   REMOVE AVISO
+   ========================================== */
+
+function removerAvisoAlteracao() {
+
+
+    document
+        .getElementById('fatura')
+        .classList
+        .remove('input-pendente');
+
+
+    document
+        .getElementById('consumoTotal')
+        .classList
+        .remove('input-pendente');
+
+
+    document
+        .getElementById('consumoUnidade')
+        .classList
+        .remove('input-pendente');
+
+
+    document.getElementById(
+        'avisoAtualizacao'
+    ).style.display =
+        'none';
+
+
+    document.getElementById(
+        'btnCalcular'
+    ).innerText =
+        'ATUALIZAR CÁLCULO';
+
+}
+
+
+
+/* ==========================================
+   FUNÇÃO PRINCIPAL
    ========================================== */
 
 function calcular() {
 
 
     /*
-     * Primeiro verifica os parâmetros.
+     * Verifica configuração.
      */
 
     if (
@@ -1554,22 +1676,25 @@ function calcular() {
 
 
     /*
-     * Captura os campos.
+     * Captura dados.
      */
 
     const campoFatura =
+
         document.getElementById(
             'fatura'
         ).value;
 
 
     const campoConsumoTotal =
+
         document.getElementById(
             'consumoTotal'
         ).value;
 
 
     const campoConsumoUnidade =
+
         document.getElementById(
             'consumoUnidade'
         ).value;
@@ -1577,8 +1702,7 @@ function calcular() {
 
 
     /*
-     * Se algum campo estiver vazio,
-     * aguarda o preenchimento.
+     * Verifica preenchimento.
      */
 
     if (
@@ -1592,7 +1716,9 @@ function calcular() {
     ) {
 
 
-        limparResultados();
+        alert(
+            'Preencha os três campos antes de calcular.'
+        );
 
 
         return;
@@ -1602,22 +1728,25 @@ function calcular() {
 
 
     /*
-     * Converte para número.
+     * Converte os valores.
      */
 
     const fatura =
+
         parseFloat(
             campoFatura
         );
 
 
     const consumoTotal =
+
         parseFloat(
             campoConsumoTotal
         );
 
 
     const consumoUnidade =
+
         parseFloat(
             campoConsumoUnidade
         );
@@ -1630,6 +1759,12 @@ function calcular() {
 
     if (
 
+        isNaN(fatura) ||
+
+        isNaN(consumoTotal) ||
+
+        isNaN(consumoUnidade) ||
+
         fatura < 0 ||
 
         consumoTotal <= 0 ||
@@ -1639,7 +1774,9 @@ function calcular() {
     ) {
 
 
-        limparResultados();
+        alert(
+            'Verifique os valores informados.'
+        );
 
 
         return;
@@ -1650,8 +1787,7 @@ function calcular() {
 
     /* ==========================================
        ITEM 2
-       
-       Custo Fixo
+       CUSTO FIXO
        ========================================== */
 
     const custoFixo =
@@ -1663,8 +1799,7 @@ function calcular() {
 
     /* ==========================================
        ITEM 4
-       
-       Custo Fixo por Unidade
+       CUSTO FIXO POR UNIDADE
        ========================================== */
 
     const custoFixoUnidade =
@@ -1676,8 +1811,7 @@ function calcular() {
 
     /* ==========================================
        ITEM 6
-       
-       Custo Variável
+       CUSTO VARIÁVEL
        ========================================== */
 
     const custoVariavel =
@@ -1689,8 +1823,7 @@ function calcular() {
 
     /* ==========================================
        ITEM 7
-       
-       Custo do gás por m³
+       CUSTO POR m³
        ========================================== */
 
     const custoM3 =
@@ -1702,8 +1835,7 @@ function calcular() {
 
     /* ==========================================
        ITEM 9
-       
-       Custo Variável da Unidade
+       CUSTO VARIÁVEL DA UNIDADE
        ========================================== */
 
     const custoVariavelUnidade =
@@ -1715,8 +1847,7 @@ function calcular() {
 
     /* ==========================================
        ITEM 10
-       
-       Valor Final
+       VALOR FINAL
        ========================================== */
 
     const valorBoleto =
@@ -1727,8 +1858,11 @@ function calcular() {
 
 
     /* ==========================================
-       ATUALIZA ITEM 1
+       ATUALIZA MEMÓRIA
        ========================================== */
+
+
+    // ITEM 1
 
     document.getElementById(
         'r1'
@@ -1740,9 +1874,7 @@ function calcular() {
 
 
 
-    /* ==========================================
-       ATUALIZA ITEM 2
-       ========================================== */
+    // ITEM 2
 
     document.getElementById(
         'r2'
@@ -1769,9 +1901,7 @@ function calcular() {
 
 
 
-    /* ==========================================
-       ATUALIZA ITEM 3
-       ========================================== */
+    // ITEM 3
 
     document.getElementById(
         'r3'
@@ -1781,9 +1911,7 @@ function calcular() {
 
 
 
-    /* ==========================================
-       ATUALIZA ITEM 4
-       ========================================== */
+    // ITEM 4
 
     document.getElementById(
         'r4'
@@ -1808,9 +1936,7 @@ function calcular() {
 
 
 
-    /* ==========================================
-       ATUALIZA ITEM 5
-       ========================================== */
+    // ITEM 5
 
     document.getElementById(
         'r5'
@@ -1824,9 +1950,7 @@ function calcular() {
 
 
 
-    /* ==========================================
-       ATUALIZA ITEM 6
-       ========================================== */
+    // ITEM 6
 
     document.getElementById(
         'r6'
@@ -1853,9 +1977,7 @@ function calcular() {
 
 
 
-    /* ==========================================
-       ATUALIZA ITEM 7
-       ========================================== */
+    // ITEM 7
 
     document.getElementById(
         'r7'
@@ -1886,9 +2008,7 @@ function calcular() {
 
 
 
-    /* ==========================================
-       ATUALIZA ITEM 8
-       ========================================== */
+    // ITEM 8
 
     document.getElementById(
         'r8'
@@ -1902,9 +2022,7 @@ function calcular() {
 
 
 
-    /* ==========================================
-       ATUALIZA ITEM 9
-       ========================================== */
+    // ITEM 9
 
     document.getElementById(
         'r9'
@@ -1933,9 +2051,7 @@ function calcular() {
 
 
 
-    /* ==========================================
-       ATUALIZA ITEM 10
-       ========================================== */
+    // ITEM 10
 
     document.getElementById(
         'r10'
@@ -1945,7 +2061,44 @@ function calcular() {
             valorBoleto
         );
 
+
+
+    /*
+     * Remove aviso.
+     */
+
+    removerAvisoAlteracao();
+
 }
+
+
+
+/* ==========================================
+   DETECTA ALTERAÇÕES
+   ========================================== */
+
+document
+    .getElementById('fatura')
+    .addEventListener(
+        'input',
+        marcarAlteracao
+    );
+
+
+document
+    .getElementById('consumoTotal')
+    .addEventListener(
+        'input',
+        marcarAlteracao
+    );
+
+
+document
+    .getElementById('consumoUnidade')
+    .addEventListener(
+        'input',
+        marcarAlteracao
+    );
 
 
 
@@ -1955,7 +2108,7 @@ function calcular() {
 
 atualizarParametros();
 
-calcular();
+limparResultados();
 
 
 </script>
