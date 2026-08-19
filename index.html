@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculadora de Rateio - Água Quente</title>
+<title>SGA - Rateio de Água Quente</title>
 
 <style>
     * {
@@ -13,202 +13,369 @@
 
     body {
         margin: 0;
-        padding: 20px;
-        background: #f3f6f9;
+        padding: 10px;
+        background: #eef2f5;
         font-family: Arial, Helvetica, sans-serif;
         color: #263238;
+        font-size: 14px;
     }
 
     .container {
-        max-width: 850px;
+        width: 100%;
+        max-width: 650px;
         margin: 0 auto;
     }
 
     .card {
-        background: white;
-        border-radius: 14px;
-        padding: 28px;
-        margin-bottom: 20px;
-        box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 14px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
-    h1 {
-        margin-top: 0;
-        color: #1565c0;
-        font-size: 28px;
+    /* CABEÇALHO */
+
+    .cabecalho {
+        text-align: center;
+        padding: 10px 5px 12px;
     }
 
-    h2 {
+    .cabecalho h1 {
+        margin: 0;
         color: #1565c0;
         font-size: 21px;
-        border-bottom: 2px solid #e3f2fd;
-        padding-bottom: 10px;
     }
 
-    .subtitulo {
-        color: #607d8b;
-        margin-bottom: 25px;
+    .cabecalho p {
+        margin: 3px 0 0;
+        color: #78909c;
+        font-size: 12px;
+    }
+
+    /* CAMPOS */
+
+    .campo {
+        margin-bottom: 9px;
+    }
+
+    .campo:last-child {
+        margin-bottom: 0;
     }
 
     label {
         display: block;
         font-weight: bold;
-        margin-bottom: 7px;
-    }
-
-    .campo {
-        margin-bottom: 20px;
+        font-size: 13px;
+        margin-bottom: 4px;
+        color: #37474f;
     }
 
     input {
         width: 100%;
-        padding: 13px;
-        font-size: 17px;
+        height: 40px;
+        padding: 7px 10px;
         border: 1px solid #b0bec5;
-        border-radius: 8px;
-        outline: none;
+        border-radius: 6px;
+        font-size: 16px;
+        color: #263238;
+        background: #fafafa;
     }
 
     input:focus {
+        outline: none;
         border-color: #1565c0;
-        box-shadow: 0 0 0 2px rgba(21,101,192,0.12);
+        background: white;
+        box-shadow: 0 0 0 2px rgba(21,101,192,0.10);
     }
 
-    .descricao {
-        font-size: 13px;
-        color: #78909c;
-        margin-top: 5px;
+    /* BOTÕES */
+
+    .botoes {
+        display: flex;
+        gap: 7px;
+        margin-top: 10px;
     }
 
     button {
-        width: 100%;
-        padding: 15px;
-        background: #1565c0;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-size: 18px;
+        border: 0;
+        border-radius: 6px;
+        height: 38px;
+        font-size: 14px;
         font-weight: bold;
         cursor: pointer;
     }
 
-    button:hover {
+    .btn-calcular {
+        flex: 1;
+        background: #1565c0;
+        color: white;
+    }
+
+    .btn-calcular:hover {
         background: #0d47a1;
     }
 
-    .memoria {
-        margin-top: 15px;
+    .btn-print {
+        width: 48px;
+        background: #eceff1;
+        color: #455a64;
+        font-size: 18px;
     }
 
-    .linha {
-        display: grid;
-        grid-template-columns: 55px 1fr auto;
-        gap: 12px;
+    /* TÍTULO DA MEMÓRIA */
+
+    .titulo-memoria {
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-        padding: 13px 5px;
-        border-bottom: 1px solid #eceff1;
+        margin-bottom: 8px;
     }
 
-    .numero {
-        font-weight: bold;
+    .titulo-memoria h2 {
+        margin: 0;
+        font-size: 16px;
         color: #1565c0;
     }
 
-    .descricao-calculo {
-        line-height: 1.5;
-    }
-
-    .formula {
-        font-size: 13px;
+    .parametros {
+        font-size: 10px;
         color: #78909c;
-        margin-top: 3px;
-    }
-
-    .valor {
-        font-weight: bold;
         text-align: right;
-        white-space: nowrap;
     }
 
-    .resultado {
-        background: #e8f5e9;
-        border: 2px solid #43a047;
-        border-radius: 12px;
-        padding: 22px;
-        margin-top: 25px;
+    /* MEMÓRIA */
+
+    .memoria {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+    }
+
+    .memoria th {
+        background: #1565c0;
+        color: white;
+        padding: 6px 5px;
+        text-align: left;
+        font-size: 11px;
+    }
+
+    .memoria th:last-child {
+        text-align: right;
+    }
+
+    .memoria td {
+        padding: 6px 5px;
+        border-bottom: 1px solid #eceff1;
+        vertical-align: middle;
+    }
+
+    .memoria td:first-child {
+        width: 25px;
+        color: #1565c0;
+        font-weight: bold;
         text-align: center;
     }
 
-    .resultado-titulo {
-        font-size: 16px;
+    .memoria td:last-child {
+        text-align: right;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    .formula {
+        display: block;
+        color: #90a4ae;
+        font-size: 9px;
+        margin-top: 2px;
+        font-weight: normal;
+    }
+
+    /* RESULTADO */
+
+    .resultado {
+        margin-top: 10px;
+        padding: 11px;
+        background: #e8f5e9;
+        border: 2px solid #43a047;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .resultado-label {
         color: #2e7d32;
+        font-size: 11px;
         font-weight: bold;
     }
 
     .resultado-valor {
-        font-size: 34px;
-        font-weight: bold;
         color: #1b5e20;
-        margin-top: 8px;
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: 2px;
     }
 
+    .resultado-desc {
+        color: #388e3c;
+        font-size: 10px;
+        margin-top: 2px;
+    }
+
+    /* OBSERVAÇÃO */
+
     .observacao {
-        margin-top: 20px;
-        padding: 15px;
+        margin-top: 8px;
+        padding: 8px;
         background: #fff8e1;
-        border-left: 4px solid #ffb300;
-        font-size: 14px;
-        line-height: 1.5;
+        border-left: 3px solid #ffb300;
+        border-radius: 3px;
+        font-size: 10px;
+        color: #5d4037;
+        line-height: 1.35;
     }
 
     .rodape {
         text-align: center;
         color: #90a4ae;
-        font-size: 12px;
-        margin-top: 20px;
+        font-size: 9px;
+        padding: 3px;
     }
 
-    @media (max-width: 600px) {
+    /* CELULAR */
+
+    @media (max-width: 480px) {
+
         body {
-            padding: 10px;
+            padding: 6px;
+            font-size: 13px;
         }
 
         .card {
-            padding: 18px;
+            padding: 10px;
+            margin-bottom: 7px;
+            border-radius: 8px;
         }
 
-        h1 {
-            font-size: 23px;
+        .cabecalho {
+            padding: 5px 2px 8px;
         }
 
-        .linha {
-            grid-template-columns: 35px 1fr;
+        .cabecalho h1 {
+            font-size: 19px;
         }
 
-        .valor {
-            grid-column: 2;
-            text-align: left;
-            margin-top: -5px;
+        .cabecalho p {
+            font-size: 10px;
+        }
+
+        input {
+            height: 37px;
+        }
+
+        .memoria {
+            font-size: 11px;
+        }
+
+        .memoria th {
+            padding: 5px 3px;
+            font-size: 10px;
+        }
+
+        .memoria td {
+            padding: 5px 3px;
+        }
+
+        .formula {
+            font-size: 8px;
+        }
+
+        .resultado {
+            padding: 9px;
+        }
+
+        .resultado-valor {
+            font-size: 25px;
+        }
+    }
+
+
+    /* ==========================
+       IMPRESSÃO / PDF
+       ========================== */
+
+    @media print {
+
+        @page {
+            size: A4;
+            margin: 10mm;
+        }
+
+        body {
+            background: white;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 100%;
+        }
+
+        .entrada {
+            display: none;
+        }
+
+        .btn-print,
+        .btn-calcular,
+        .rodape {
+            display: none !important;
+        }
+
+        .card {
+            box-shadow: none;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 8px;
+        }
+
+        .cabecalho {
+            padding-bottom: 8px;
+        }
+
+        .memoria td {
+            padding: 6px;
+        }
+
+        .resultado {
+            margin-top: 8px;
+        }
+
+        .observacao {
+            display: block;
         }
     }
 </style>
 </head>
 
+
 <body>
 
 <div class="container">
 
-    <div class="card">
+    <!-- CABEÇALHO -->
 
-        <h1>Calculadora de Rateio de Água Quente</h1>
+    <div class="cabecalho">
+        <h1>SGA - Rateio de Água Quente</h1>
+        <p>Memória de cálculo do consumo da unidade</p>
+    </div>
 
-        <div class="subtitulo">
-            Informe os três valores abaixo para calcular automaticamente
-            o valor do rateio da unidade.
-        </div>
+
+    <!-- DADOS DE ENTRADA -->
+
+    <div class="card entrada">
 
         <div class="campo">
-            <label for="fatura">1. Fatura COMGÁS</label>
+            <label for="fatura">
+                1. Fatura COMGÁS
+            </label>
 
             <input
                 type="number"
@@ -216,16 +383,14 @@
                 value="77141.01"
                 step="0.01"
                 min="0"
+                oninput="calcular()"
             >
-
-            <div class="descricao">
-                Valor total da fatura de gás do condomínio.
-            </div>
         </div>
+
 
         <div class="campo">
             <label for="consumoTotal">
-                5. Consumo total de água quente do condomínio (m³)
+                5. Consumo total do condomínio (m³)
             </label>
 
             <input
@@ -234,16 +399,14 @@
                 value="1081.6"
                 step="0.01"
                 min="0"
+                oninput="calcular()"
             >
-
-            <div class="descricao">
-                Consumo total registrado para todas as unidades.
-            </div>
         </div>
+
 
         <div class="campo">
             <label for="consumoUnidade">
-                8. Consumo de água quente da unidade (m³)
+                8. Consumo da unidade (m³)
             </label>
 
             <input
@@ -252,199 +415,258 @@
                 value="8.3"
                 step="0.01"
                 min="0"
+                oninput="calcular()"
             >
-
-            <div class="descricao">
-                Consumo da unidade que será calculada.
-            </div>
         </div>
 
-        <button onclick="calcular()">
-            CALCULAR
-        </button>
+
+        <div class="botoes">
+
+            <button
+                class="btn-calcular"
+                onclick="calcular()"
+            >
+                CALCULAR
+            </button>
+
+            <button
+                class="btn-print"
+                onclick="window.print()"
+                title="Imprimir ou salvar PDF"
+            >
+                🖨
+            </button>
+
+        </div>
 
     </div>
 
 
+    <!-- MEMÓRIA -->
+
     <div class="card">
 
-        <h2>Memória de Cálculo</h2>
+        <div class="titulo-memoria">
 
-        <div class="memoria">
+            <h2>Memória de Cálculo</h2>
 
-            <div class="linha">
-                <div class="numero">1</div>
-
-                <div class="descricao-calculo">
-                    Fatura COMGÁS
-                </div>
-
-                <div class="valor" id="r1">
-                    R$ 77.141,01
-                </div>
+            <div class="parametros">
+                20% fixo • 80% variável<br>
+                205 unidades
             </div>
-
-
-            <div class="linha">
-                <div class="numero">2</div>
-
-                <div class="descricao-calculo">
-                    Custo Fixo – 20% da fatura
-
-                    <div class="formula" id="f2">
-                        R$ 77.141,01 × 20%
-                    </div>
-                </div>
-
-                <div class="valor" id="r2">
-                    R$ 15.428,20
-                </div>
-            </div>
-
-
-            <div class="linha">
-                <div class="numero">3</div>
-
-                <div class="descricao-calculo">
-                    Número de unidades
-                    <div class="formula">
-                        204 apartamentos + 1 zelador
-                    </div>
-                </div>
-
-                <div class="valor">
-                    205
-                </div>
-            </div>
-
-
-            <div class="linha">
-                <div class="numero">4</div>
-
-                <div class="descricao-calculo">
-                    Custo Fixo por Unidade
-
-                    <div class="formula" id="f4">
-                        R$ 15.428,20 ÷ 205
-                    </div>
-                </div>
-
-                <div class="valor" id="r4">
-                    R$ 75,26
-                </div>
-            </div>
-
-
-            <div class="linha">
-                <div class="numero">5</div>
-
-                <div class="descricao-calculo">
-                    Consumo total de água quente do condomínio
-                </div>
-
-                <div class="valor" id="r5">
-                    1.081,60 m³
-                </div>
-            </div>
-
-
-            <div class="linha">
-                <div class="numero">6</div>
-
-                <div class="descricao-calculo">
-                    Custo Variável – 80% da fatura
-
-                    <div class="formula" id="f6">
-                        R$ 77.141,01 × 80%
-                    </div>
-                </div>
-
-                <div class="valor" id="r6">
-                    R$ 61.712,81
-                </div>
-            </div>
-
-
-            <div class="linha">
-                <div class="numero">7</div>
-
-                <div class="descricao-calculo">
-                    Custo do gás por m³
-
-                    <div class="formula" id="f7">
-                        R$ 61.712,81 ÷ 1.081,60 m³
-                    </div>
-                </div>
-
-                <div class="valor" id="r7">
-                    R$ 57,06/m³
-                </div>
-            </div>
-
-
-            <div class="linha">
-                <div class="numero">8</div>
-
-                <div class="descricao-calculo">
-                    Consumo de água quente da unidade
-                </div>
-
-                <div class="valor" id="r8">
-                    8,30 m³
-                </div>
-            </div>
-
-
-            <div class="linha">
-                <div class="numero">9</div>
-
-                <div class="descricao-calculo">
-                    Custo variável da unidade
-
-                    <div class="formula" id="f9">
-                        R$ 57,06 × 8,30 m³
-                    </div>
-                </div>
-
-                <div class="valor" id="r9">
-                    R$ 473,58
-                </div>
-            </div>
-
 
         </div>
 
 
+        <table class="memoria">
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Cálculo</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                <!-- ITEM 1 -->
+
+                <tr>
+                    <td>1</td>
+
+                    <td>
+                        Fatura COMGÁS
+                    </td>
+
+                    <td id="r1">
+                        R$ 77.141,01
+                    </td>
+                </tr>
+
+
+                <!-- ITEM 2 -->
+
+                <tr>
+                    <td>2</td>
+
+                    <td>
+                        Custo Fixo – 20%
+                        <span class="formula" id="f2">
+                            R$ 77.141,01 × 20%
+                        </span>
+                    </td>
+
+                    <td id="r2">
+                        R$ 15.428,20
+                    </td>
+                </tr>
+
+
+                <!-- ITEM 3 -->
+
+                <tr>
+                    <td>3</td>
+
+                    <td>
+                        Número de unidades
+                        <span class="formula">
+                            204 apartamentos + 1 zelador
+                        </span>
+                    </td>
+
+                    <td>
+                        205
+                    </td>
+                </tr>
+
+
+                <!-- ITEM 4 -->
+
+                <tr>
+                    <td>4</td>
+
+                    <td>
+                        Custo Fixo por Unidade
+                        <span class="formula" id="f4">
+                            R$ 15.428,20 ÷ 205
+                        </span>
+                    </td>
+
+                    <td id="r4">
+                        R$ 75,26
+                    </td>
+                </tr>
+
+
+                <!-- ITEM 5 -->
+
+                <tr>
+                    <td>5</td>
+
+                    <td>
+                        Consumo total condomínio
+                    </td>
+
+                    <td id="r5">
+                        1.081,60 m³
+                    </td>
+                </tr>
+
+
+                <!-- ITEM 6 -->
+
+                <tr>
+                    <td>6</td>
+
+                    <td>
+                        Custo Variável – 80%
+                        <span class="formula" id="f6">
+                            R$ 77.141,01 × 80%
+                        </span>
+                    </td>
+
+                    <td id="r6">
+                        R$ 61.712,81
+                    </td>
+                </tr>
+
+
+                <!-- ITEM 7 -->
+
+                <tr>
+                    <td>7</td>
+
+                    <td>
+                        Custo do gás por m³
+                        <span class="formula" id="f7">
+                            R$ 61.712,81 ÷ 1.081,60
+                        </span>
+                    </td>
+
+                    <td id="r7">
+                        R$ 57,06/m³
+                    </td>
+                </tr>
+
+
+                <!-- ITEM 8 -->
+
+                <tr>
+                    <td>8</td>
+
+                    <td>
+                        Consumo da unidade
+                    </td>
+
+                    <td id="r8">
+                        8,30 m³
+                    </td>
+                </tr>
+
+
+                <!-- ITEM 9 -->
+
+                <tr>
+                    <td>9</td>
+
+                    <td>
+                        Custo Variável da Unidade
+                        <span class="formula" id="f9">
+                            R$ 57,06 × 8,30 m³
+                        </span>
+                    </td>
+
+                    <td id="r9">
+                        R$ 473,58
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+
+        <!-- RESULTADO -->
+
         <div class="resultado">
 
-            <div class="resultado-titulo">
+            <div class="resultado-label">
                 10. VALOR DO BOLETO
             </div>
 
-            <div class="resultado-valor" id="r10">
+            <div
+                class="resultado-valor"
+                id="r10"
+            >
                 R$ 548,84
             </div>
 
-            <div style="margin-top:8px;color:#2e7d32;">
+            <div class="resultado-desc">
                 Custo Fixo + Custo Variável da Unidade
             </div>
 
         </div>
 
 
-        <div class="observacao">
-            <strong>Como é calculado?</strong><br><br>
+        <!-- OBSERVAÇÃO -->
 
-            20% da fatura é dividido igualmente entre as 205 unidades,
-            formando o custo fixo. Os outros 80% são distribuídos
-            proporcionalmente ao consumo de água quente de cada unidade.
+        <div class="observacao">
+
+            <strong>Critério de rateio:</strong>
+
+            20% da fatura é dividido igualmente entre as
+            205 unidades. Os outros 80% são distribuídos
+            proporcionalmente ao consumo de água quente.
+
         </div>
 
     </div>
 
 
     <div class="rodape">
-        Calculadora de Rateio de Água Quente
+        SGA - Sistema de Rateio de Água Quente
     </div>
 
 </div>
@@ -452,140 +674,207 @@
 
 <script>
 
-function dinheiro(valor) {
+    // ==========================================
+    // PARÂMETROS DO CONDOMÍNIO
+    // ==========================================
 
-    return valor.toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-    });
+    const PERCENTUAL_FIXO = 0.20;
 
-}
+    const PERCENTUAL_VARIAVEL = 0.80;
 
-
-function numero(valor) {
-
-    return valor.toLocaleString('pt-BR', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    });
-
-}
+    const NUMERO_UNIDADES = 205;
 
 
-function calcular() {
+    // ==========================================
+    // FORMATAÇÃO
+    // ==========================================
 
-    // ==========================
-    // DADOS INFORMADOS
-    // ==========================
+    function dinheiro(valor) {
 
-    const fatura =
-        parseFloat(document.getElementById("fatura").value) || 0;
-
-    const consumoTotal =
-        parseFloat(document.getElementById("consumoTotal").value) || 0;
-
-    const consumoUnidade =
-        parseFloat(document.getElementById("consumoUnidade").value) || 0;
-
-
-    // ==========================
-    // PARÂMETROS
-    // ==========================
-
-    const percentualFixo = 0.20;
-
-    const percentualVariavel = 0.80;
-
-    const unidades = 205;
-
-
-    // ==========================
-    // CÁLCULOS
-    // ==========================
-
-    const custoFixo =
-        fatura * percentualFixo;
-
-    const custoFixoUnidade =
-        custoFixo / unidades;
-
-    const custoVariavel =
-        fatura * percentualVariavel;
-
-    let custoM3 = 0;
-
-    if (consumoTotal > 0) {
-
-        custoM3 =
-            custoVariavel / consumoTotal;
+        return valor.toLocaleString(
+            'pt-BR',
+            {
+                style: 'currency',
+                currency: 'BRL'
+            }
+        );
 
     }
 
-    const custoVariavelUnidade =
-        custoM3 * consumoUnidade;
 
-    const valorBoleto =
-        custoFixoUnidade + custoVariavelUnidade;
+    function numero(valor) {
 
+        return valor.toLocaleString(
+            'pt-BR',
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        );
 
-    // ==========================
-    // RESULTADOS
-    // ==========================
-
-    document.getElementById("r1").innerText =
-        dinheiro(fatura);
-
-    document.getElementById("r2").innerText =
-        dinheiro(custoFixo);
-
-    document.getElementById("f2").innerText =
-        dinheiro(fatura) + " × 20%";
-
-    document.getElementById("r4").innerText =
-        dinheiro(custoFixoUnidade);
-
-    document.getElementById("f4").innerText =
-        dinheiro(custoFixo) + " ÷ 205";
-
-    document.getElementById("r5").innerText =
-        numero(consumoTotal) + " m³";
-
-    document.getElementById("r6").innerText =
-        dinheiro(custoVariavel);
-
-    document.getElementById("f6").innerText =
-        dinheiro(fatura) + " × 80%";
-
-    document.getElementById("r7").innerText =
-        dinheiro(custoM3) + "/m³";
-
-    document.getElementById("f7").innerText =
-        dinheiro(custoVariavel) +
-        " ÷ " +
-        numero(consumoTotal) +
-        " m³";
-
-    document.getElementById("r8").innerText =
-        numero(consumoUnidade) + " m³";
-
-    document.getElementById("r9").innerText =
-        dinheiro(custoVariavelUnidade);
-
-    document.getElementById("f9").innerText =
-        dinheiro(custoM3) +
-        " × " +
-        numero(consumoUnidade) +
-        " m³";
-
-    document.getElementById("r10").innerText =
-        dinheiro(valorBoleto);
-
-}
+    }
 
 
-// Calcula automaticamente ao abrir a página
+    // ==========================================
+    // CÁLCULO PRINCIPAL
+    // ==========================================
 
-calcular();
+    function calcular() {
+
+        // Dados informados pelo usuário
+
+        const fatura =
+            parseFloat(
+                document.getElementById('fatura').value
+            ) || 0;
+
+
+        const consumoTotal =
+            parseFloat(
+                document.getElementById('consumoTotal').value
+            ) || 0;
+
+
+        const consumoUnidade =
+            parseFloat(
+                document.getElementById('consumoUnidade').value
+            ) || 0;
+
+
+        // ------------------------------
+        // ITEM 2
+        // ------------------------------
+
+        const custoFixo =
+            fatura * PERCENTUAL_FIXO;
+
+
+        // ------------------------------
+        // ITEM 4
+        // ------------------------------
+
+        const custoFixoUnidade =
+            custoFixo / NUMERO_UNIDADES;
+
+
+        // ------------------------------
+        // ITEM 6
+        // ------------------------------
+
+        const custoVariavel =
+            fatura * PERCENTUAL_VARIAVEL;
+
+
+        // ------------------------------
+        // ITEM 7
+        // ------------------------------
+
+        let custoM3 = 0;
+
+        if (consumoTotal > 0) {
+
+            custoM3 =
+                custoVariavel / consumoTotal;
+
+        }
+
+
+        // ------------------------------
+        // ITEM 9
+        // ------------------------------
+
+        const custoVariavelUnidade =
+            custoM3 * consumoUnidade;
+
+
+        // ------------------------------
+        // ITEM 10
+        // ------------------------------
+
+        const valorBoleto =
+            custoFixoUnidade +
+            custoVariavelUnidade;
+
+
+        // ==========================================
+        // ATUALIZA A MEMÓRIA DE CÁLCULO
+        // ==========================================
+
+        document.getElementById('r1').innerText =
+            dinheiro(fatura);
+
+
+        document.getElementById('r2').innerText =
+            dinheiro(custoFixo);
+
+
+        document.getElementById('f2').innerText =
+            dinheiro(fatura) +
+            ' × 20%';
+
+
+        document.getElementById('r4').innerText =
+            dinheiro(custoFixoUnidade);
+
+
+        document.getElementById('f4').innerText =
+            dinheiro(custoFixo) +
+            ' ÷ 205';
+
+
+        document.getElementById('r5').innerText =
+            numero(consumoTotal) +
+            ' m³';
+
+
+        document.getElementById('r6').innerText =
+            dinheiro(custoVariavel);
+
+
+        document.getElementById('f6').innerText =
+            dinheiro(fatura) +
+            ' × 80%';
+
+
+        document.getElementById('r7').innerText =
+            dinheiro(custoM3) +
+            '/m³';
+
+
+        document.getElementById('f7').innerText =
+            dinheiro(custoVariavel) +
+            ' ÷ ' +
+            numero(consumoTotal) +
+            ' m³';
+
+
+        document.getElementById('r8').innerText =
+            numero(consumoUnidade) +
+            ' m³';
+
+
+        document.getElementById('r9').innerText =
+            dinheiro(custoVariavelUnidade);
+
+
+        document.getElementById('f9').innerText =
+            dinheiro(custoM3) +
+            ' × ' +
+            numero(consumoUnidade) +
+            ' m³';
+
+
+        document.getElementById('r10').innerText =
+            dinheiro(valorBoleto);
+
+    }
+
+
+    // ==========================================
+    // CALCULA AO ABRIR
+    // ==========================================
+
+    calcular();
 
 </script>
 
